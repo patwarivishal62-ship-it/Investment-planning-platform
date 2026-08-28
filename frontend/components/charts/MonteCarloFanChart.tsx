@@ -3,6 +3,7 @@
 import { Area, CartesianGrid, ComposedChart, Legend, Line, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { AXIS_STYLE, GRID_COLOR } from "./ChartFrame";
 import { formatINR } from "@/lib/format";
+import { DataProvenanceTag } from "./ChartFrame";
 
 /**
  * Monte Carlo fan chart. Bands are stacked from P10 to P90 so the shaded area
@@ -34,6 +35,8 @@ export function MonteCarloFanChart({
   }));
 
   return (
+    <div className="w-full">
+
     <ResponsiveContainer width="100%" height={height}>
       <ComposedChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }} stackOffset="silhouette">
         <CartesianGrid stroke={GRID_COLOR} vertical={false} />
@@ -107,5 +110,8 @@ export function MonteCarloFanChart({
         />
       </ComposedChart>
     </ResponsiveContainer>
+  
+      <DataProvenanceTag compact />
+    </div>
   );
 }

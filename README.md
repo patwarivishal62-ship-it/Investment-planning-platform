@@ -29,7 +29,10 @@ it does.
    with walk-forward testing.
 
 The header pill always tells you whether the data is **Demo**, **Live** or **Cached**, with
-its source and timestamp.
+its source and timestamp, and every individual chart carries a
+`Demo data — not live market data` tag on its own face — because a chart can be screenshotted
+or exported on its own. That label is rendered **server-side**, so it is present in the first
+paint rather than appearing only after hydration.
 
 ---
 

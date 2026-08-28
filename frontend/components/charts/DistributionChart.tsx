@@ -3,6 +3,7 @@
 import { Bar, BarChart, CartesianGrid, Cell, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { AXIS_STYLE, GRID_COLOR } from "./ChartFrame";
 import { formatPercent, formatNumber } from "@/lib/format";
+import { DataProvenanceTag } from "./ChartFrame";
 
 /** Histogram of periodic returns with a VaR reference line. */
 export function DistributionChart({
@@ -18,6 +19,8 @@ export function DistributionChart({
 }) {
   const data = bins.map((bin, index) => ({ bin, count: counts[index] ?? 0 }));
   return (
+    <div className="w-full">
+
     <ResponsiveContainer width="100%" height={height}>
       <BarChart data={data} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
         <CartesianGrid stroke={GRID_COLOR} vertical={false} />
@@ -54,6 +57,9 @@ export function DistributionChart({
         ) : null}
       </BarChart>
     </ResponsiveContainer>
+  
+      <DataProvenanceTag compact />
+    </div>
   );
 }
 

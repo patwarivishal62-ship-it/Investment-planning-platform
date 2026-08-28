@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
+import { useState } from "react";
+import { useDataStatus } from "@/lib/hooks/useDataStatus";
 import { formatDateTime } from "@/lib/format";
 import type { DataStatus } from "@/types";
 import { cn } from "@/lib/utils";
@@ -19,12 +19,8 @@ const TONE: Record<string, { dot: string; text: string; label: string }> = {
  * tell whether they are looking at demo, live or cached data.
  */
 export function DataStatusIndicator() {
-  const [status, setStatus] = useState<DataStatus | null>(null);
+  const status = useDataStatus();
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    api.status().then(setStatus).catch(() => setStatus(null));
-  }, []);
 
   const tone = TONE[status?.mode ?? "unavailable"] ?? TONE.unavailable;
 

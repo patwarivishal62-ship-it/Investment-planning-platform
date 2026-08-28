@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { formatNumber } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { DataProvenanceTag } from "./ChartFrame";
 
 /**
  * Correlation heatmap. Colour is explicitly bipolar (teal negative -> neutral ->
@@ -34,6 +35,8 @@ export function CorrelationHeatmap({
     value != null && Math.abs(value) > 0.55 ? "#FFFFFF" : "#44403C";
 
   return (
+    <div className="w-full">
+
     <div className="w-full overflow-x-auto">
       <table className="w-full border-separate" style={{ borderSpacing: 2 }}>
         <caption className="sr-only">
@@ -101,6 +104,9 @@ export function CorrelationHeatmap({
         <span>+1.0</span>
         <span className="ml-2">Negative (diversifying) ← → Positive (moves together)</span>
       </div>
+    </div>
+  
+      <DataProvenanceTag compact />
     </div>
   );
 }

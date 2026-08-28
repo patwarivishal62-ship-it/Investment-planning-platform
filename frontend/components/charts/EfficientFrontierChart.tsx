@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import { AXIS_STYLE, GRID_COLOR } from "./ChartFrame";
 import { formatNumber, formatPercent } from "@/lib/format";
+import { DataProvenanceTag } from "./ChartFrame";
 
 export interface FrontierPointInput {
   expectedReturn: number;
@@ -41,6 +42,8 @@ export function EfficientFrontierChart({
   const data = curve.length ? curve : [{ expectedReturn: 0, volatility: 0 }];
 
   return (
+    <div className="w-full">
+
     <ResponsiveContainer width="100%" height={height}>
       <ScatterChart margin={{ top: 12, right: 16, bottom: 20, left: 4 }}>
         <CartesianGrid stroke={GRID_COLOR} />
@@ -105,6 +108,9 @@ export function EfficientFrontierChart({
         ) : null}
       </ScatterChart>
     </ResponsiveContainer>
+  
+      <DataProvenanceTag compact />
+    </div>
   );
 }
 

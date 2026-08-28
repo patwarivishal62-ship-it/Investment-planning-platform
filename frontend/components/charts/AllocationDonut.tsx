@@ -2,6 +2,7 @@
 
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { ASSET_CLASS_COLORS, classLabel, formatPercent } from "@/lib/format";
+import { DataProvenanceTag } from "./ChartFrame";
 
 export interface AllocationSlice {
   key: string;
@@ -24,6 +25,8 @@ export function AllocationDonut({
 }) {
   const total = data.reduce((sum, slice) => sum + slice.value, 0) || 1;
   return (
+    <div className="w-full">
+
     <div className="relative w-full" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
@@ -63,6 +66,9 @@ export function AllocationDonut({
         </span>
         <span className="num text-lg font-semibold text-ink">{centerValue ?? ""}</span>
       </div>
+    </div>
+  
+      <DataProvenanceTag compact />
     </div>
   );
 }

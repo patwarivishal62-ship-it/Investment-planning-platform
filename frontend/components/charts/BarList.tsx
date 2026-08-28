@@ -2,6 +2,7 @@
 
 import { formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { DataProvenanceTag } from "./ChartFrame";
 
 /** Horizontal bar list used for risk contribution and asset-class exposure. */
 export function BarList({
@@ -20,6 +21,8 @@ export function BarList({
     valueFormat === "percent" ? formatPercent(value, 1) : value.toFixed(2);
 
   return (
+    <div className="w-full">
+
     <ul className="space-y-2.5">
       {items.map((item) => (
         <li key={item.key}>
@@ -47,5 +50,8 @@ export function BarList({
       ))}
       {secondary ? <li className="pt-1 text-xs text-ink-subtle">{secondary}</li> : null}
     </ul>
+  
+      <DataProvenanceTag compact />
+    </div>
   );
 }

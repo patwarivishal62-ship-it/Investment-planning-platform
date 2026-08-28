@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { useDataStatus } from "@/lib/hooks/useDataStatus";
 import { DataStatusIndicator } from "./DataStatusIndicator";
 
 const LINKS = [
@@ -19,11 +19,8 @@ const LINKS = [
 export function TopNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [isDemo, setIsDemo] = useState(false);
-
-  useEffect(() => {
-    api.status().then((status) => setIsDemo(status.isDemo)).catch(() => setIsDemo(false));
-  }, [pathname]);
+  const status = useDataStatus();
+  const isDemo = status?.isDemo ?? false;
 
   useEffect(() => setOpen(false), [pathname]);
 
